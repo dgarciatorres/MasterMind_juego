@@ -1,0 +1,117 @@
+
+/*FUENTES*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;700&display=swap');
+
+/* ESTILOS GENERALES*/
+
+body{
+    background-color: brown;
+    font-family: 'Poppins', sans-serif;
+}
+.container-info {
+    display: flex;
+}
+
+h2 {
+    color: antiquewhite;
+}
+.col-info {
+    flex: 0 0 50%;
+}
+
+.col-info fieldset
+{
+    background-color: antiquewhite;
+    border: none;
+    margin: 20px;
+    min-height: 150px;
+}
+
+.col-info legend {
+    padding: 10px;
+    background-color: antiquewhite;
+}
+
+.boton-clave{
+    text-align: center;
+    padding: 10px 20px ;
+    margin: 5px;
+}
+
+.container-selecion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container-selecion>div {
+    min-height: 40px;
+    width: 25%;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+}
+
+/*Clases COLORES*/
+.Azul{
+    background-color: cornflowerblue;
+    color: white;
+}
+.Rojo{
+    background-color: red;
+    color:white;
+}
+.Amarillo{
+    background-color: yellow;
+    color: black;
+}
+.Verde{
+    background-color: seagreen;
+    color: white;
+}
+.Rosa{
+    background-color: hotpink;
+    color:black;
+}
+.Blanco{
+    background-color: floralwhite;
+    color:black;
+}
+.Negro{
+    background-color: black;
+    color: white;
+}
+.Morado{
+    background-color: blueviolet;
+    color: white;
+}
+.Marron{
+    background-color: saddlebrown;
+    color: white;
+}
+.Naranja{
+    background-color: orangered;
+    color: white;
+}
+
+/* ----- botones ------ */
+
+.btn-norm {
+    transition: 0.4s all ease-in-out;
+    padding: 10px 30px;
+    margin: 10px;
+    border: none;
+    background-color: crimson;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.btn-norm:hover {
+    transition: 0.4s all ease-in-out;
+    background-color: maroon;
+    color: #fff;
+    box-shadow: 0 20px 20px rgba(0,0,0,0.2);
+}
