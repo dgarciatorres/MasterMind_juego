@@ -8,7 +8,6 @@ class Clave
      * @return array que es la clave con 4 colores
      * Usamos el modo array_rand que me devuelve un número aleatorio de indices no repetidos de un array
      */
-
     public static function obtener_clave($colores)
     {
         $clave = [];

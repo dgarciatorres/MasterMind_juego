@@ -9,16 +9,17 @@ $colores = Clave::COLORES;
 $texto_informativo = "Escoja una opción";
 $formulario = Plantilla::mostrar_formulario_jugada($colores) ?? null;
 $opc_ocultar = 'Si quieres ver el contenido de la clave pulsa en "Mostrar"';
-$retorno = $opc_ocultar ?? null;
+
+//var_dump($_POST);
 
 // si no existe la clave la creamos
 if (!isset($_SESSION['clave'])) {
     $clave = Clave::obtener_clave($colores);
     $_SESSION['clave'] = $clave;
+    $_SESSION['jugadas'] = [];
 } else {
     $clave = $_SESSION['clave'];
 }
-
 // control de la opcion seleccionada por el usuario
 $opcion = $_POST['submit'] ?? null;
 
@@ -35,12 +36,25 @@ switch ($opcion) {
     case "Resetear clave":
         $clave = Clave::generar_clave($colores);
 //        $clave::guardar_clave($colores);
+        $_SESSION['clave'] = $clave;
         $texto_informativo = "Se ha reseteado la clave";
-        ///....
-        exit;
+        break;
     case "Jugar":
-//        $jugada = new Jugada ($_POST['combinacion']);
-//        $texto_informativo=$jugada->valida_jugada();
+            $colores = [$_POST['combinacion0'],$_POST['combinacion1'],$_POST['combinacion2'], $_POST['combinacion3']];
+            $colores_acertados = 0;
+            $posiciones_acertadas = 0;
+            $clave = $_SESSION['clave'];
+            $jugada = new Jugada ($colores,$clave);
+            array_push($_SESSION['jugadas'], $jugada);
+
+            if ($jugada->posiciones_acertadas == 4 && $jugada->colores_acertados == 4){
+                header('Location:FinJuego.php?msj=Has ganado la partida');
+            } elseif (count($_SESSION['jugadas'] ) > 14) {
+                header('Location:FinJuego.php?msj=Se han acabado los intentos');
+            }
+
+//            $texto_informativo=$jugada->valida_jugada();
+//            $jugada::comprobar_jugada();
         break;
     case "Mostrar Clave":
         $retorno = $opc_mostrar;
@@ -49,10 +63,11 @@ switch ($opcion) {
         $retorno = $opc_ocultar;
 
     default: //Si no vengo del index, redericciono
-
 }
-var_dump($clave);
-var_dump($opcion);
+
+//var_dump($clave);
+//var_dump($opcion);
+//var_dump($jugada);
 
 ?>
 
@@ -84,7 +99,6 @@ var_dump($opcion);
             <p>Debes seleccionar <strong>4 colores</strong> para jugar</p>
             <?=$formulario?>
         </fieldset>
-
     </div>
 
     <div class="col-info">
@@ -92,6 +106,9 @@ var_dump($opcion);
         <fieldset>
             <legend>Sección de información</legend>
             <div class="container-selecion">
+                <?php
+                    print_r($_SESSION['jugadas']);
+                ?>
                 <?= $retorno ?>
             </div>
         </fieldset>
