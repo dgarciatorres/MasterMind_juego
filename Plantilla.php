@@ -10,9 +10,8 @@ class Plantilla {
     //Mostrar / ocultar la clave.
     public static function mostrar_clave($clave)
     {
-        $retorno = "";
+        $retorno = " ";
         foreach ($clave as $color) {
-
             $retorno .= "<div class=$color>$color</div>";
         }
         return $retorno;

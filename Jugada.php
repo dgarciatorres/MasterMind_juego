@@ -16,9 +16,6 @@ class Jugada {
         $claveaux = array_merge($clave);
         $this->jugada= $colores;
 
-        // si esta
-        // si esta en la posición correcta
-        // 2 array -->
 
         for ($i=0; $i < 4; $i++){
             for ($j=0; $j < count($claveaux); $j++){
@@ -44,22 +41,6 @@ class Jugada {
             $jugada[] = $_POST["combinacion$i"];
         return $jugada;
     }
+    
 
-    // metodo: evaluaJugada() --> se le pasa la selección de colores --> tiene que tener acceso a la clave
-    public static function  valida_jugada(){
-
-    }
-    // entero de numero de posiciones acertadas que va a ser menor o igual al numero de colores que he acertado
-    public static function comprobar_jugada(){
-
-    }
-
-    //        $jugada_actual = actualizar_jugada($jugada_actual);
-    //        $array_jugada_actual = leer_jugada();
-    //        //Guardamos la jugada con el número de jugada en la sesión
-    //        $_SESSION['jugada'][$jugada_actual] = $array_jugada_actual;
-    //        $comparacion = comparar_jugada($array_jugada_actual, $array_claves, $jugada_actual);
-    //        $colores_coinciden = actualizar_colores($comparacion, $jugada_actual);
-    //        $posiciones_coinciden = actualizar_posiciones($comparacion, $jugada_actual);
-    //        comprobar_fin_juego($jugada_actual);
 }

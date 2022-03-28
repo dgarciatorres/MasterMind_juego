@@ -22,6 +22,7 @@ class Clave
 
     public static function generar_clave($colores)
     {
+        session_destroy();
         $clave = [];
         $posiciones = array_rand($colores, 4);
         for ($i = 0; $i < 4; $i++) {

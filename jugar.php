@@ -7,6 +7,7 @@ session_start();
 
 $colores = Clave::COLORES;
 $texto_informativo = "Escoja una opción";
+$retorno = "Sin datos a mostrar";
 
 //var_dump($_POST);
 if (!isset($_SESSION['jugadas'])) {
@@ -74,9 +75,6 @@ $opc_ocultar = 'Si quieres ver el contenido de la clave pulsa en "Mostrar"';
 $informe_jugadas = Plantilla::mostrar_informe() ?? null;
 $historico_jugadas = Plantilla::mostrar_historico() ?? null;
 
-//var_dump($clave);
-//var_dump($opcion);
-//var_dump($jugada);
 
 ?>
 
