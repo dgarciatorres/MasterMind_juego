@@ -16,7 +16,7 @@ class Jugada {
         $claveaux = array_merge($clave);
         $this->jugada= $colores;
 
-
+        // comprobamos los colores acertados
         for ($i=0; $i < 4; $i++){
             for ($j=0; $j < count($claveaux); $j++){
                 if ($colores[$i] == $claveaux[$j]){
@@ -28,6 +28,8 @@ class Jugada {
                 }
             }
         }
+
+        // comprobamos las posiciones acertaadas
         for ($i=0; $i < 4; $i++){
             if ($colores[$i] == $clave[$i]){
                 $this->posiciones_acertadas++;
@@ -41,6 +43,5 @@ class Jugada {
             $jugada[] = $_POST["combinacion$i"];
         return $jugada;
     }
-    
 
 }

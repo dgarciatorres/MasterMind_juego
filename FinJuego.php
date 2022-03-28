@@ -3,9 +3,7 @@
 spl_autoload_register(function ($class) {
     require "$class.php";
 });
-
 session_start();
-
 $historico_jugadas = Plantilla::mostrar_historico() ?? null;
 
 ?>

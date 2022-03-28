@@ -31,6 +31,7 @@ if (isset($_POST['submit'])) {
         $opc_mostrar = Plantilla::mostrar_clave($clave);
     } else {
         $opcion_clave = 'Mostrar Clave';
+        $opc_ocultar = 'Sin datos a mostrar';
     }
 }else {
     $opcion_clave = 'Mostrar Clave';
