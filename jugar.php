@@ -7,16 +7,16 @@ session_start();
 
 $colores = Clave::COLORES;
 $texto_informativo = "Escoja una opción";
-$formulario = Plantilla::mostrar_formulario_jugada($colores) ?? null;
-$opc_ocultar = 'Si quieres ver el contenido de la clave pulsa en "Mostrar"';
 
 //var_dump($_POST);
+if (!isset($_SESSION['jugadas'])) {
+    $_SESSION['jugadas'] = array();
+}
 
 // si no existe la clave la creamos
 if (!isset($_SESSION['clave'])) {
     $clave = Clave::obtener_clave($colores);
     $_SESSION['clave'] = $clave;
-    $_SESSION['jugadas'] = [];
 } else {
     $clave = $_SESSION['clave'];
 }
@@ -24,12 +24,18 @@ if (!isset($_SESSION['clave'])) {
 $opcion = $_POST['submit'] ?? null;
 
 // Mostramos y ocultamos el botón de mostar
-if (($_POST['submit']) == "Mostrar Clave") {
-    $opcion_clave = 'Ocultar Clave';
-    $opc_mostrar = Plantilla::mostrar_clave($clave);
-} else {
+if (isset($_POST['submit'])) {
+    if (($_POST['submit']) == "Mostrar Clave") {
+        $opcion_clave = 'Ocultar Clave';
+        $opc_mostrar = Plantilla::mostrar_clave($clave);
+    } else {
+        $opcion_clave = 'Mostrar Clave';
+    }
+}else {
     $opcion_clave = 'Mostrar Clave';
 }
+
+$formulario = Plantilla::mostrar_formulario_jugada($colores) ?? null;
 
 // controlamos la opción seleccionada por el usuario
 switch ($opcion) {
@@ -52,7 +58,6 @@ switch ($opcion) {
             } elseif (count($_SESSION['jugadas'] ) > 14) {
                 header('Location:FinJuego.php?msj=Se han acabado los intentos');
             }
-
 //            $texto_informativo=$jugada->valida_jugada();
 //            $jugada::comprobar_jugada();
         break;
@@ -64,6 +69,10 @@ switch ($opcion) {
 
     default: //Si no vengo del index, redericciono
 }
+
+$opc_ocultar = 'Si quieres ver el contenido de la clave pulsa en "Mostrar"';
+$informe_jugadas = Plantilla::mostrar_informe() ?? null;
+$historico_jugadas = Plantilla::mostrar_historico() ?? null;
 
 //var_dump($clave);
 //var_dump($opcion);
@@ -106,11 +115,12 @@ switch ($opcion) {
         <fieldset>
             <legend>Sección de información</legend>
             <div class="container-selecion">
-                <?php
-                    print_r($_SESSION['jugadas']);
-                ?>
                 <?= $retorno ?>
             </div>
+            <hr>
+            <?= $informe_jugadas?>
+            <hr>
+            <?= $historico_jugadas?>
         </fieldset>
     </div>
 </section>

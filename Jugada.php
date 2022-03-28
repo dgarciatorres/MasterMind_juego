@@ -3,8 +3,7 @@ spl_autoload_register(function ($clase){
     require ("$clase.php");
 });
 
-$clave = $_SESSION['clave'];
-
+//$clave = $_SESSION['clave'];
 
 class Jugada {
 
@@ -54,4 +53,13 @@ class Jugada {
     public static function comprobar_jugada(){
 
     }
+
+    //        $jugada_actual = actualizar_jugada($jugada_actual);
+    //        $array_jugada_actual = leer_jugada();
+    //        //Guardamos la jugada con el número de jugada en la sesión
+    //        $_SESSION['jugada'][$jugada_actual] = $array_jugada_actual;
+    //        $comparacion = comparar_jugada($array_jugada_actual, $array_claves, $jugada_actual);
+    //        $colores_coinciden = actualizar_colores($comparacion, $jugada_actual);
+    //        $posiciones_coinciden = actualizar_posiciones($comparacion, $jugada_actual);
+    //        comprobar_fin_juego($jugada_actual);
 }

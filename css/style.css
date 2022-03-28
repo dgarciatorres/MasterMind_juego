@@ -55,6 +55,7 @@ h2 {
 }
 
 /*Clases COLORES*/
+
 .Azul{
     background-color: cornflowerblue;
     color: white;
@@ -114,4 +115,18 @@ h2 {
     background-color: maroon;
     color: #fff;
     box-shadow: 0 20px 20px rgba(0,0,0,0.2);
+}
+
+.cir_acert {
+    padding: 5px 10px;
+    border-radius: 100px;
+    margin: 2px;
+}
+.colores_acertados{
+    background-color: white;
+    color: black;
+}
+.posiciones_acertadas {
+    background-color: black;
+    color: white;
 }

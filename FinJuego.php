@@ -6,6 +6,8 @@ spl_autoload_register(function ($class) {
 
 session_start();
 
+$historico_jugadas = Plantilla::mostrar_historico() ?? null;
+
 ?>
 
 <!doctype html>
@@ -15,22 +17,22 @@ session_start();
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="main.js"></script>
+    <title>Juego Master Mind - Jugar</title>
 </head>
 <body>
-    <?php
-        echo $_GET['msj'];
-        echo count($_SESSION['jugadas']). " intentos";
-        $jugadas = $_SESSION['jugadas'];
-        foreach ($jugadas as $clave=>$jugada) {
-            echo "<br>";
-            echo '<h1>'. $jugada->posiciones_acertadas .'</h1>';
-            echo '<h1>'. $jugada->colores_acertados .'</h1>';
-            echo '<h1>'. $jugada->jugada[0] .'</h1>';
-            echo '<h1>'. $jugada->jugada[1] .'</h1>';
-            echo '<h1>'. $jugada->jugada[2] .'</h1>';
-            echo '<h1>'. $jugada->jugada[3] .'</h1>';
-        }
-    ?>
+<section class="container-info">
+
+    <div class="col-info">
+        <h2><?= $_GET['msj'] ?></h2>
+        <fieldset>
+            <legend>Fin de la partida</legend>
+            <?= count($_SESSION['jugadas']). " intentos"; ?>
+            <hr>
+            <?= $historico_jugadas?>
+        </fieldset>
+    </div>
+</section>
 </body>
 </html>
