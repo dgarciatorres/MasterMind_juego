@@ -56,6 +56,11 @@ h2 {
 
 /*Clases COLORES*/
 
+.btn-jugada {
+    padding: 5px 20px;
+    margin: 2px 5px;
+}
+
 .Azul{
     background-color: cornflowerblue;
     color: white;
@@ -129,4 +134,8 @@ h2 {
 .posiciones_acertadas {
     background-color: black;
     color: white;
+}
+
+.destacado {
+    color: crimson;
 }

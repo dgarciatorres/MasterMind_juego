@@ -5,6 +5,7 @@ spl_autoload_register(function ($class) {
 });
 session_start();
 $historico_jugadas = Plantilla::mostrar_historico() ?? null;
+$clave_actual = Plantilla::mostrar_clave($_SESSION['clave']);
 
 ?>
 
@@ -26,9 +27,18 @@ $historico_jugadas = Plantilla::mostrar_historico() ?? null;
         <h2><?= $_GET['msj'] ?></h2>
         <fieldset>
             <legend>Fin de la partida</legend>
-            <?= count($_SESSION['jugadas']). " intentos"; ?>
+            <h3>Valor de la clave:</h3>
+            <div class="container-selecion">
+                <?= $clave_actual?>
+            </div>
+            <hr>
+            <h3>Acertada la clave en <span class="destacado"><?= count($_SESSION['jugadas']). " intentos"; ?></span></h3>
             <hr>
             <?= $historico_jugadas?>
+            <hr>
+            <form action="index.php" method="POST">
+                <input class="btn-norm" type="submit" name="submit" value="Volver al index">
+            </form>
         </fieldset>
     </div>
 </section>

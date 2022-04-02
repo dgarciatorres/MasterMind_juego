@@ -3,13 +3,13 @@
 spl_autoload_register(function ($class) {
     require "$class.php";
 });
+
 session_start();
 
 $colores = Clave::COLORES;
 $texto_informativo = "Escoja una opción";
 $retorno = "Sin datos a mostrar";
 
-//var_dump($_POST);
 if (!isset($_SESSION['jugadas'])) {
     $_SESSION['jugadas'] = array();
 }
@@ -33,35 +33,34 @@ if (isset($_POST['submit'])) {
         $opcion_clave = 'Mostrar Clave';
         $opc_ocultar = 'Sin datos a mostrar';
     }
-}else {
+} else {
     $opcion_clave = 'Mostrar Clave';
 }
 
+// esta variable genere el interfaz para la selección de los colores
 $formulario = Plantilla::mostrar_formulario_jugada($colores) ?? null;
 
 // controlamos la opción seleccionada por el usuario
 switch ($opcion) {
     case "Resetear clave":
         $clave = Clave::generar_clave($colores);
-//        $clave::guardar_clave($colores);
         $_SESSION['clave'] = $clave;
         $texto_informativo = "Se ha reseteado la clave";
         break;
     case "Jugar":
-            $colores = [$_POST['combinacion0'],$_POST['combinacion1'],$_POST['combinacion2'], $_POST['combinacion3']];
-            $colores_acertados = 0;
-            $posiciones_acertadas = 0;
-            $clave = $_SESSION['clave'];
-            $jugada = new Jugada ($colores,$clave);
-            array_push($_SESSION['jugadas'], $jugada);
+        $colores = [$_POST['combinacion0'], $_POST['combinacion1'], $_POST['combinacion2'], $_POST['combinacion3']];
+        $colores_acertados = 0;
+        $posiciones_acertadas = 0;
+        $clave = $_SESSION['clave'];
+        $jugada = new Jugada ($colores, $clave);
+        array_push($_SESSION['jugadas'], $jugada);
 
-            if ($jugada->posiciones_acertadas == 4 && $jugada->colores_acertados == 4){
-                header('Location:FinJuego.php?msj=Has ganado la partida');
-            } elseif (count($_SESSION['jugadas'] ) > 14) {
-                header('Location:FinJuego.php?msj=Se han acabado los intentos');
-            }
-//            $texto_informativo=$jugada->valida_jugada();
-//            $jugada::comprobar_jugada();
+        if ($jugada->posiciones_acertadas == 4 && $jugada->colores_acertados == 4) {
+            header('Location:FinJuego.php?msj=Has ganado la partida');
+        } elseif (count($_SESSION['jugadas']) > 14) {
+            header('Location:FinJuego.php?msj=Se han acabado los intentos');
+        }
+
         break;
     case "Mostrar Clave":
         $retorno = $opc_mostrar;
@@ -75,7 +74,6 @@ switch ($opcion) {
 $opc_ocultar = 'Si quieres ver el contenido de la clave pulsa en "Mostrar"';
 $informe_jugadas = Plantilla::mostrar_informe() ?? null;
 $historico_jugadas = Plantilla::mostrar_historico() ?? null;
-
 
 ?>
 
@@ -105,7 +103,7 @@ $historico_jugadas = Plantilla::mostrar_historico() ?? null;
         <fieldset>
             <legend>Menú jugar</legend>
             <p>Debes seleccionar <strong>4 colores</strong> para jugar</p>
-            <?=$formulario?>
+            <?= $formulario ?>
         </fieldset>
     </div>
 
@@ -117,9 +115,9 @@ $historico_jugadas = Plantilla::mostrar_historico() ?? null;
                 <?= $retorno ?>
             </div>
             <hr>
-            <?= $informe_jugadas?>
+            <?= $informe_jugadas ?>
             <hr>
-            <?= $historico_jugadas?>
+            <?= $historico_jugadas ?>
         </fieldset>
     </div>
 </section>
