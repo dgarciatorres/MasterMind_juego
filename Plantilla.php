@@ -52,21 +52,22 @@ class Plantilla {
 
     //Mostrar la relación de jugadas efectuadas.
     public static function mostrar_historico(){
-        $jugadas = $_SESSION['jugadas'];
+        $contador = 1;
         $historico_jugadas = "<h3>Histórico de jugadas</h3>";
         $historico_jugadas .= "<div class='cont-hist-jug'>";
         foreach ($_SESSION['jugadas'] as $clave=>$jugada){
             // determinar que pintamos las colores y posiciones
             $historico_jugadas .= "<div class='cont-col-jug'>";
+            $historico_jugadas .= "<h3>Valor de la jugada $contador</h3>";
             $historico_jugadas .= "<span class='cir_acert colores_acertados'>" . $jugada->colores_acertados . "</span> <span class='cir_acert posiciones_acertadas'>" . $jugada->posiciones_acertadas . "</span>";
             foreach ($jugada->jugada as $clave_jugada=>$color){
                 $historico_jugadas .= "<span class='btn-jugada $color'>$color</span>";
             }
             $historico_jugadas .= "</div>";
             $historico_jugadas .= "<br>";
+            $contador++;
         }
         $historico_jugadas .= "</div>";
         return $historico_jugadas;
     }
-
 }
