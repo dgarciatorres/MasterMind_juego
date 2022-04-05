@@ -3,7 +3,6 @@ spl_autoload_register(function ($clase){
     require ("$clase.php");
 });
 
-//$clave = $_SESSION['clave'];
 
 class Jugada {
 
@@ -23,7 +22,6 @@ class Jugada {
                     $this->colores_acertados++;
                     unset($claveaux[$j]);
                     sort($claveaux);
-                    print_r($claveaux);
                     break;
                 }
             }

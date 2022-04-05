@@ -9,6 +9,7 @@ session_start();
 $colores = Clave::COLORES;
 $texto_informativo = "Escoja una opción";
 $retorno = "Sin datos a mostrar";
+$opcion_clave = 'Mostrar Clave';
 
 if (!isset($_SESSION['jugadas'])) {
     $_SESSION['jugadas'] = array();
@@ -21,6 +22,8 @@ if (!isset($_SESSION['clave'])) {
 } else {
     $clave = $_SESSION['clave'];
 }
+
+
 // control de la opcion seleccionada por el usuario
 $opcion = $_POST['submit'] ?? null;
 
@@ -64,10 +67,11 @@ switch ($opcion) {
         break;
     case "Mostrar Clave":
         $retorno = $opc_mostrar;
+
         break;
     case "Ocultar Clave":
         $retorno = $opc_ocultar;
-
+        break;
     default: //Si no vengo del index, redericciono
 }
 
